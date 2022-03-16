@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "crypto-prices-in-google-sheets"
+name = "crypto-prices"
 version = "0.1.0"
 description = ""
 authors = ["kyo <odinxp@gmail.com>"]
