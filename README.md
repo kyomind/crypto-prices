@@ -16,3 +16,6 @@
 - 建立`config.ini`
 - coin 決定以「`,`」分隔，而不採用原先的空白分隔，因為和 API 的參數格式（id of coins, comma-separated if querying more than 1 coin
 ）較為一致
+`2022/03/17`
+- 改用`gspread`套件，因為`pygsheets`年久失修，Google Sheets API 驗證一直過不了，錯誤訊息：`Client secrets must be for a web or installed app.`
+- 完成取得與更新 sheet 內容測試
