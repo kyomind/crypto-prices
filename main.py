@@ -3,15 +3,24 @@ import os
 from configparser import ConfigParser
 from datetime import datetime
 
+import gspread
 from pycoingecko import CoinGeckoAPI
+
+SHEET_URL = 'https://docs.google.com/spreadsheets/d/1WSZ8ckqIBPQA5V4FbUnfpisRhusd_WIvYGpgzKdCwak/'
 
 config = ConfigParser()
 config.read('config.ini')
-coin_gecko = CoinGeckoAPI()
+coin_client = CoinGeckoAPI()
+
+
+def get_worksheet():
+    sheet_client = gspread.service_account(filename='key.json')
+    return sheet_client.open("Crypto Prices").sheet1
+
 
 
 def store_coin_list():
-    coin_list = coin_gecko.get_coins_list()
+    coin_list = coin_client.get_coins_list()
     with open('coin_list.csv', 'w', newline='') as csv_file:
         fieldnames = ['id', 'symbol', 'name']
         writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
@@ -30,5 +39,7 @@ if __name__ == "__main__":
         store_coin_list()
 
     coin_ids = get_my_coin_ids()
-    res = coin_gecko.get_price(ids=coin_ids, vs_currencies='usd')
+    res = coin_client.get_price(ids=coin_ids, vs_currencies='usd')
     print(res)
+    sheet = get_worksheet()
+    sheet.update('A1:B2', [[1, 2], [3, 4]])
