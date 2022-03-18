@@ -18,7 +18,8 @@ def create_id_symbol_mapping():
 
 def get_worksheet():
     sheet_client = gspread.service_account(filename='key.json')
-    return sheet_client.open("Crypto Prices").sheet1
+    sheet_name = config['my_coin_config']['sheet_name']
+    return sheet_client.open(sheet_name).sheet1
 
 
 def store_coins_csv():
@@ -31,7 +32,7 @@ def store_coins_csv():
 
 
 def get_my_coin_ids() -> str:
-    coin_ids: str = config['my_coins']['coin_ids']
+    coin_ids: str = config['my_coin_config']['coin_ids']
     coin_ids = coin_ids.replace(' ', '').replace('\n', '')
     return coin_ids
 
@@ -41,7 +42,7 @@ def convert_api_response_to_sheet_rows(api_response: dict, coin_ids: str) -> lis
     sheet_rows = []
     for coin_id in coin_ids.split(','):
         if not coin_id:
-            raise ValueError('config coin 不能為空值')
+            raise ValueError('config coin_ids 格式有誤')
         if coin_id not in id_symbol_mapping:
             raise ValueError(f'coin id="{coin_id}" 不存在')
         coin_symbol = id_symbol_mapping[coin_id]
