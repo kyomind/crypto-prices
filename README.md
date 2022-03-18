@@ -3,10 +3,11 @@
 
 ## Main pacakges
 - [pycoingecko](https://github.com/man-c/pycoingecko)
-- [pygsheets](https://github.com/nithinmurali/pygsheets)
+- [gspread](https://github.com/burnash/gspread)
+  - ❌ [pygsheets](https://github.com/nithinmurali/pygsheets)
 
 
-## Dev logs
+## Devlogs
 `2022/03/15`
 - 建立開發環境，使用 [Poetry](https://python-poetry.org/)
 - 將 CoinGecko 所有支援的加密貨幣以`csv`清單格式存到本機，作為快取對照表，以取得 coin 的 symbol 比如 BTC、ETH（預設使用 id 查詢）。清單內容也可參見 [API 說明](https://www.coingecko.com/en/api/documentation)
@@ -20,3 +21,7 @@
 `2022/03/17`
 - 改用`gspread`套件，因為`pygsheets`年久失修，Google Sheets API 驗證一直過不了，錯誤訊息：`Client secrets must be for a web or installed app.`
 - 完成取得與更新 sheet 內容測試
+
+`2022/03/18`
+- 完成主要功能
+- 調整寫入 sheets 的順序與 config 一致，以免新增幣種時，原來的順序會被打亂
