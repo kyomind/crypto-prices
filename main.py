@@ -36,12 +36,13 @@ def get_my_coin_ids() -> str:
     return coin_ids
 
 
-def convert_api_response_to_sheet_rows(api_response: dict) -> list:
-    id_to_symbol = create_id_symbol_mapping()
+def convert_api_response_to_sheet_rows(api_response: dict, coin_ids: str) -> list:
+    id_symbol_mapping = create_id_symbol_mapping()
     sheet_rows = []
-    for coin_id, coin_price in api_response.items():
-        row = [id_to_symbol[coin_id], coin_price['usd']]
-        sheet_rows.append(row)
+    for coin_id in coin_ids.split(','):
+        coin_symbol = id_symbol_mapping[coin_id]
+        coin_price = api_response[coin_id]['usd']
+        sheet_rows.append([coin_symbol, coin_price])
     return sheet_rows
 
 
@@ -52,7 +53,7 @@ if __name__ == "__main__":
 
     my_coin_ids = get_my_coin_ids()
     respsone = coin_client.get_price(ids=my_coin_ids, vs_currencies='usd')
-    sheet_rows = convert_api_response_to_sheet_rows(respsone)
+    sheet_rows = convert_api_response_to_sheet_rows(respsone, my_coin_ids)
 
     sheet = get_worksheet()
     sheet.update(f'A2:B{len(sheet_rows)+1}', sheet_rows)
