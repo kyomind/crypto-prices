@@ -18,7 +18,7 @@ def create_id_symbol_mapping():
 
 def get_worksheet():
     sheet_client = gspread.service_account(filename='key.json')
-    sheet_name = config['my_coin_config']['sheet_name']
+    sheet_name = config['my_coin_config']['google_sheet_name']
     return sheet_client.open(sheet_name).sheet1
 
 
@@ -57,8 +57,8 @@ if __name__ == "__main__":
         store_coins_csv()
 
     my_coin_ids = get_my_coin_ids()
-    respsone = coin_client.get_price(ids=my_coin_ids, vs_currencies='usd')
-    sheet_rows = convert_api_response_to_sheet_rows(respsone, my_coin_ids)
+    response = coin_client.get_price(ids=my_coin_ids, vs_currencies='usd')
+    sheet_rows = convert_api_response_to_sheet_rows(response, my_coin_ids)
 
     sheet = get_worksheet()
     sheet.update(f'A2:B{len(sheet_rows)+1}', sheet_rows)
