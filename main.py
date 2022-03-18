@@ -40,6 +40,10 @@ def convert_api_response_to_sheet_rows(api_response: dict, coin_ids: str) -> lis
     id_symbol_mapping = create_id_symbol_mapping()
     sheet_rows = []
     for coin_id in coin_ids.split(','):
+        if not coin_id:
+            raise ValueError('config coin 不能為空值')
+        if coin_id not in id_symbol_mapping:
+            raise ValueError(f'coin id="{coin_id}" 不存在')
         coin_symbol = id_symbol_mapping[coin_id]
         coin_price = api_response[coin_id]['usd']
         sheet_rows.append([coin_symbol, coin_price])
