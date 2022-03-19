@@ -1,13 +1,28 @@
 import csv
+import logging
 import os
 from configparser import ConfigParser
 
 import gspread
 from pycoingecko import CoinGeckoAPI
 
+# Paths
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 csv_path = os.path.join(BASE_DIR, 'coins.csv')
+log_path = os.path.join(BASE_DIR, 'app.log')
 
+
+# Independent logging by getLogger
+formatter = logging.Formatter('%(asctime)s - %(lineno)s - %(levelname)s - %(message)s')
+file_handler = logging.FileHandler(log_path)
+file_handler.setFormatter(formatter)
+
+logger = logging.getLogger(__name__)
+logger.addHandler(file_handler)
+logger.setLevel(logging.INFO)
+
+
+# config
 config = ConfigParser()
 config_path = os.path.join(BASE_DIR, 'config.ini')
 config.read(config_path)
@@ -67,3 +82,4 @@ if __name__ == "__main__":
 
     sheet = get_worksheet()
     sheet.update(f'A2:B{len(sheet_rows)+1}', sheet_rows)
+    logger.info('成功更新 coin prices')

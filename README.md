@@ -1,5 +1,5 @@
 # Crypto Prices
-使用 CoinGecko Python SDK (API) 取得指定加密貨幣報價並寫入自己的 Google Sheets 裡，方便後續製作專屬的 Portfolio
+透過 CoinGecko API 取得指定加密貨幣即時報價並寫入自己的 Google Sheets 裡，供後續製作專屬的 Portfolio
 
 ![](image/demo.png)
 
