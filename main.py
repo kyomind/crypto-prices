@@ -5,8 +5,9 @@ from configparser import ConfigParser
 import gspread
 from pycoingecko import CoinGeckoAPI
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 config = ConfigParser()
-config.read('config.ini')
+config.read(os.path.join(BASE_DIR, 'config.ini'))
 coin_client = CoinGeckoAPI()
 
 
