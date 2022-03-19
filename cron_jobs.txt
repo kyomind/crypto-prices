@@ -1,1 +1,1 @@
-* * * * * /home/kyo/code/crypto-prices/fetch_prices.sh >> /home/kyo/code/crypto-prices/crontab.log 2>&1
+*5 12 * * * /home/kyo/code/crypto-prices/fetch_prices.sh >> /home/kyo/code/crypto-prices/crontab.log 2>&1
