@@ -1,6 +1,8 @@
 # Crypto Prices
 使用 CoinGecko Python SDK (API) 取得指定加密貨幣報價並寫入自己的 Google Sheets 裡，方便後續製作專屬的 Portfolio
 
+![](image/demo.png)
+
 ## Main pacakges
 - [pycoingecko](https://github.com/man-c/pycoingecko)
 - [gspread](https://github.com/burnash/gspread)
@@ -28,3 +30,6 @@
 - 新增兩種可能錯誤訊息
 - 新增可單獨更新 coins.csv 的 py 檔，可另安排週期性事件執行
 - 新增可自訂 Google sheet 名稱
+
+`2022/03/19`
+- 新增 demo 圖片
