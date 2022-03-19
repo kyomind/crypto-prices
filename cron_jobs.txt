@@ -1,0 +1,1 @@
+*/5 * * * * /home/${USER}/code/crypto-prices/fetch_prices.sh

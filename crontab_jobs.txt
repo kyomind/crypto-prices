@@ -1,1 +1,0 @@
-*/5 12 * * * python /home/${USER}/code/crypto-prices/main.py >> /home/kyo/code/crypto-prices/crontab.log 2>&1
