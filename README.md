@@ -7,6 +7,9 @@
 - [pycoingecko](https://github.com/man-c/pycoingecko)
 - [gspread](https://github.com/burnash/gspread)
   - ❌ [pygsheets](https://github.com/nithinmurali/pygsheets)
+- [poetry](https://python-poetry.org/)
+  - 套件依賴管理
+  - 虛擬環境建立
 
 
 ## Devlogs
