@@ -1,0 +1,1 @@
+*/5 12 * * * python /home/${USER}/crypto-prices/main.py
