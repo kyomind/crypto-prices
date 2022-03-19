@@ -33,3 +33,6 @@
 
 `2022/03/19`
 - 新增 demo 圖片
+- 新增 crontab job，此部分較麻煩因為 crontab process 會使用獨立的 shell
+  - 修正路徑，以免 crontab process 出現路徑錯誤
+- 新增獨立 logging，不使用全域設定
