@@ -6,26 +6,30 @@ import gspread
 from pycoingecko import CoinGeckoAPI
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+csv_path = os.path.join(BASE_DIR, 'coins.csv')
+
 config = ConfigParser()
-config.read(os.path.join(BASE_DIR, 'config.ini'))
+config_path = os.path.join(BASE_DIR, 'config.ini')
+config.read(config_path)
 coin_client = CoinGeckoAPI()
 
 
 def create_id_symbol_mapping():
-    with open('coins.csv') as csv_file:
+    with open(csv_path) as csv_file:
         coins = csv.DictReader(csv_file)
         return {coin['id']: coin['symbol'].upper() for coin in coins}
 
 
 def get_worksheet():
-    sheet_client = gspread.service_account(filename='key.json')
+    key_path = os.path.join(BASE_DIR, 'key.json')
+    sheet_client = gspread.service_account(key_path)
     sheet_name = config['my_coin_config']['google_sheet_name']
     return sheet_client.open(sheet_name).sheet1
 
 
 def store_coins_csv():
     coins = coin_client.get_coins_list()
-    with open('coins.csv', 'w', newline='') as csv_file:
+    with open(csv_path, 'w', newline='') as csv_file:
         fieldnames = ['id', 'symbol', 'name']
         writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
         writer.writeheader()
@@ -54,7 +58,7 @@ def convert_api_response_to_sheet_rows(api_response: dict, coin_ids: str) -> lis
 
 if __name__ == "__main__":
     # 檔案不存在時建立
-    if not os.path.isfile('coins.csv'):
+    if not os.path.isfile(csv_path):
         store_coins_csv()
 
     my_coin_ids = get_my_coin_ids()
