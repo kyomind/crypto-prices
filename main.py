@@ -13,7 +13,7 @@ log_path = os.path.join(BASE_DIR, 'app.log')
 
 
 # Independent logging by getLogger
-formatter = logging.Formatter('%(asctime)s - %(lineno)s - %(levelname)s - %(message)s')
+formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
 file_handler = logging.FileHandler(log_path)
 file_handler.setFormatter(formatter)
 
@@ -82,4 +82,4 @@ if __name__ == "__main__":
 
     sheet = get_worksheet()
     sheet.update(f'A2:B{len(sheet_rows)+1}', sheet_rows)
-    logger.info('成功更新 coin prices')
+    logger.info('成功更新價格')
