@@ -1,1 +1,1 @@
-*/5 * * * * /home/${USER}/code/crypto-prices/fetch_prices.sh  >> /home/${USER}/code/crypto-prices/crontab.log 2>&1
+* * * * * /home/${USER}/code/crypto-prices/fetch_prices.sh >> /home/${USER}/code/crypto-prices/crontab.log 2>&1
