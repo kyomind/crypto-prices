@@ -17,7 +17,7 @@
 `2022/03/16`
 - 以 Python 標準庫——configparser 建立並讀自己的追縱 coin 清單
 - 建立`config.ini`
-- coin 決定以「`,`」分隔，而不採用原先的空白分隔，因為和 API 的參數格式（id of coins, comma-separated if querying more than 1 coin
+- coin 決定以「`,`」分隔，而不採用空白分隔，因為和 API 的參數格式（id of coins, comma-separated if querying more than 1 coin
 ）較為一致
 
 `2022/03/17`
@@ -28,7 +28,7 @@
 - 完成主要功能
 - 調整寫入 sheets 的順序與 config 一致，以免新增幣種時，原來的順序會被打亂
 - 新增兩種可能錯誤訊息
-- 新增可單獨更新 coins.csv 的 py 檔，可另安排週期性事件執行
+- 新增可單獨更新 coins.csv 的 py 檔，可另安排週期性事件或於必要時執行
 - 新增可自訂 Google sheet 名稱
 
 `2022/03/19`
